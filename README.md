@@ -22,7 +22,7 @@ Este plugin fornece uma coleção de widgets customizados para o Elementor, perm
 ## Estrutura do Plugin
 
 ```
-elementor-widgets/
+elementor-widgets-pda/
 ├── elementor-widgets.php      # Arquivo principal do plugin
 ├── README.md                  # Este arquivo
 ├── assets/

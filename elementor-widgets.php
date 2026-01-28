@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Elementor Widgets PDA
- * Plugin URI: https://github.com/pereira-lui/elementor-widgets
+ * Plugin URI: https://github.com/pereira-lui/elementor-widgets-pda
  * Description: Plugin de Widgets personalizados para Elementor. Coleção de widgets customizados para diversos usos com atualização automática via GitHub.
  * Version: 1.0.0
  * Author: Lui
@@ -12,9 +12,9 @@
  * Requires PHP: 7.4
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * GitHub Plugin URI: https://github.com/pereira-lui/elementor-widgets
+ * GitHub Plugin URI: https://github.com/pereira-lui/elementor-widgets-pda
  * GitHub Branch: main
- * Update URI: https://github.com/pereira-lui/elementor-widgets
+ * Update URI: https://github.com/pereira-lui/elementor-widgets-pda
  */
 
 if (!defined('ABSPATH')) {
