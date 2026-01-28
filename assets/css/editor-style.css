@@ -1,0 +1,51 @@
+/**
+ * Elementor Widgets PDA - Editor Styles
+ *
+ * Styles específicos para o editor do Elementor
+ *
+ * @package Elementor_Widgets_PDA
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Category Icon
+   ========================================================================== */
+
+.elementor-panel-category[data-category="pda-widgets"] .elementor-panel-category-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.elementor-panel-category[data-category="pda-widgets"] .elementor-panel-category-title::before {
+    content: "\e88e";
+    font-family: 'Material Icons';
+    margin-right: 5px;
+}
+
+/* ==========================================================================
+   Widget Preview Styles
+   ========================================================================== */
+
+.elementor-widget-pda-widget-placeholder {
+    background: #f9f9f9;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* ==========================================================================
+   Custom Controls
+   ========================================================================== */
+
+.elementor-control-pda-notice {
+    background: #e8f4fd;
+    border-left: 4px solid #007cba;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.elementor-control-pda-notice p {
+    margin: 0;
+    color: #007cba;
+}

@@ -1,0 +1,172 @@
+/**
+ * Elementor Widgets PDA - Frontend Styles
+ *
+ * @package Elementor_Widgets_PDA
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+.elementor-widgets-pda-widget {
+    position: relative;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.ewp-flex {
+    display: flex;
+}
+
+.ewp-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.ewp-items-center {
+    align-items: center;
+}
+
+.ewp-justify-center {
+    justify-content: center;
+}
+
+.ewp-justify-between {
+    justify-content: space-between;
+}
+
+.ewp-text-center {
+    text-align: center;
+}
+
+.ewp-hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   Animation Classes
+   ========================================================================== */
+
+.ewp-fade-in {
+    animation: ewpFadeIn 0.3s ease-in-out;
+}
+
+.ewp-slide-up {
+    animation: ewpSlideUp 0.3s ease-in-out;
+}
+
+@keyframes ewpFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ewpSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+
+.ewp-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.ewp-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: ewpSpin 1s linear infinite;
+}
+
+@keyframes ewpSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .ewp-hide-tablet {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .ewp-hide-mobile {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   Add your custom widget styles below
+   ========================================================================== */
+/* ==========================================================================
+   PDA Image Card Widget
+   ========================================================================== */
+
+.pda-image-card {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pda-image-card--overflow-hidden {
+    overflow: hidden;
+}
+
+.pda-image-card__image {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.pda-image-card__image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.pda-image-card__text {
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+/* Link reset */
+a.pda-image-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.pda-image-card:hover {
+    text-decoration: none;
+}
