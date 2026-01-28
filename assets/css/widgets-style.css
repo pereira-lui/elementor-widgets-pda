@@ -139,10 +139,6 @@
     transition: all 0.3s ease;
 }
 
-.pda-image-card--overflow-hidden {
-    overflow: hidden;
-}
-
 .pda-image-card__image {
     position: relative;
     overflow: hidden;

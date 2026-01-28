@@ -138,61 +138,6 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         // ==============================
-        // Style Tab - Card
-        // ==============================
-        
-        $this->start_controls_section(
-            'style_card_section',
-            [
-                'label' => __('Card', 'elementor-widgets-pda'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'card_border_radius',
-            [
-                'label' => __('Borda Arredondada', 'elementor-widgets-pda'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => '15',
-                    'right' => '15',
-                    'bottom' => '15',
-                    'left' => '15',
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .pda-image-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'card_box_shadow',
-                'label' => __('Sombra', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-image-card',
-            ]
-        );
-
-        $this->add_control(
-            'card_overflow',
-            [
-                'label' => __('Esconder Overflow', 'elementor-widgets-pda'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Sim', 'elementor-widgets-pda'),
-                'label_off' => __('Não', 'elementor-widgets-pda'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // ==============================
         // Style Tab - Imagem
         // ==============================
         
@@ -213,7 +158,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'range' => [
                     'px' => [
                         'min' => 100,
-                        'max' => 600,
+                        'max' => 800,
                         'step' => 10,
                     ],
                     'vh' => [
@@ -227,7 +172,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 250,
+                    'size' => 280,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pda-image-card__image' => 'height: {{SIZE}}{{UNIT}};',
@@ -272,6 +217,26 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pda-image-card__image img' => 'object-position: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_border_radius',
+            [
+                'label' => __('Borda Arredondada', 'elementor-widgets-pda'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '15',
+                    'right' => '15',
+                    'bottom' => '0',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .pda-image-card__image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -370,26 +335,6 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'text_margin',
-            [
-                'label' => __('Margem', 'elementor-widgets-pda'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'default' => [
-                    'top' => '0',
-                    'right' => '0',
-                    'bottom' => '0',
-                    'left' => '0',
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'text_border_radius',
             [
                 'label' => __('Borda Arredondada', 'elementor-widgets-pda'),
@@ -398,10 +343,10 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'default' => [
                     'top' => '0',
                     'right' => '0',
-                    'bottom' => '0',
-                    'left' => '0',
+                    'bottom' => '10',
+                    'left' => '10',
                     'unit' => 'px',
-                    'isLinked' => true,
+                    'isLinked' => false,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pda-image-card__text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -498,10 +443,6 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
 
         // Classes do card
         $card_classes = ['pda-image-card'];
-        
-        if ($settings['card_overflow'] === 'yes') {
-            $card_classes[] = 'pda-image-card--overflow-hidden';
-        }
 
         if ($settings['hover_animation']) {
             $card_classes[] = 'elementor-animation-' . $settings['hover_animation'];
@@ -546,9 +487,6 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         var wrapperTag = hasLink ? 'a' : 'div';
         
         var cardClasses = ['pda-image-card'];
-        if (settings.card_overflow === 'yes') {
-            cardClasses.push('pda-image-card--overflow-hidden');
-        }
         if (settings.hover_animation) {
             cardClasses.push('elementor-animation-' + settings.hover_animation);
         }
