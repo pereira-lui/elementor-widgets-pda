@@ -136,14 +136,33 @@ final class Elementor_Widgets_PDA {
     }
 
     /**
-     * Register custom widget category
+     * Register custom widget categories
      */
     public function register_widget_category($elements_manager) {
+        // Categoria geral de widgets PDA
         $elements_manager->add_category(
             'pda-widgets',
             [
                 'title' => __('PDA Widgets', 'elementor-widgets-pda'),
                 'icon' => 'fa fa-plug',
+            ]
+        );
+        
+        // Categoria de Search
+        $elements_manager->add_category(
+            'pda-search',
+            [
+                'title' => __('Search Widget PDA', 'elementor-widgets-pda'),
+                'icon' => 'fa fa-search',
+            ]
+        );
+        
+        // Categoria de FAQ
+        $elements_manager->add_category(
+            'pda-faq',
+            [
+                'title' => __('FAQ PDA', 'elementor-widgets-pda'),
+                'icon' => 'fa fa-question-circle',
             ]
         );
     }
