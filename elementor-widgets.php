@@ -153,39 +153,12 @@ final class Elementor_Widgets_PDA {
      */
     public function register_widgets($widgets_manager) {
         // Include widget files
-        $widget_files = glob(ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/*.php');
-        
-        foreach ($widget_files as $widget_file) {
-            require_once $widget_file;
-        }
+        require_once ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/class-widget-example.php';
+        require_once ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/class-widget-image-card.php';
 
-        // Get all widget classes and register them
-        // Widgets should be named like: class-widget-example.php -> Elementor_Widgets_PDA_Example
-        foreach ($widget_files as $widget_file) {
-            $file_name = basename($widget_file, '.php');
-            
-            // Convert file name to class name
-            // class-widget-example -> Elementor_Widgets_PDA_Example
-            $class_name = str_replace('class-widget-', '', $file_name);
-            $class_name = str_replace('-', '_', $class_name);
-            $class_name = 'Elementor_Widgets_PDA_' . ucwords($class_name, '_');
-            $class_name = str_replace('_', '', $class_name);
-            $class_name = 'Elementor_Widgets_PDA_' . str_replace('Elementor_Widgets_PDA_', '', $class_name);
-            
-            // Alternative: widgets can define their own class name
-            // Check if class exists before registering
-            $possible_classes = [
-                $class_name,
-                str_replace('class-widget-', 'Elementor_Widgets_PDA_', str_replace('-', '_', $file_name)),
-            ];
-            
-            foreach ($possible_classes as $class) {
-                if (class_exists($class)) {
-                    $widgets_manager->register(new $class());
-                    break;
-                }
-            }
-        }
+        // Register widgets
+        $widgets_manager->register(new Elementor_Widgets_PDA_Example());
+        $widgets_manager->register(new Elementor_Widgets_PDA_Image_Card());
     }
 
     /**
