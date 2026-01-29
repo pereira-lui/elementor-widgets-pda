@@ -329,12 +329,12 @@ class Elementor_Widgets_PDA_Timeline extends \Elementor\Widget_Base {
                     ],
                 ],
                 'default' => [
-                    'size' => 50,
+                    'size' => 20,
                 ],
                 'condition' => [
                     'enable_animation' => 'yes',
                 ],
-                'description' => __('Quanto maior, mais cedo a animação inicia (0 = topo da tela, 100 = fundo)', 'elementor-widgets-pda'),
+                'description' => __('0 = anima ao aparecer | 50 = anima no meio da tela | 100 = anima no topo', 'elementor-widgets-pda'),
             ]
         );
 
@@ -794,7 +794,7 @@ class Elementor_Widgets_PDA_Timeline extends \Elementor\Widget_Base {
         $animation_type = $settings['animation_type'] ?? 'fade-slide';
         $animation_duration = isset($settings['animation_duration']['size']) ? $settings['animation_duration']['size'] : 800;
         $animation_delay = isset($settings['animation_delay']['size']) ? $settings['animation_delay']['size'] : 150;
-        $animation_offset = isset($settings['animation_offset']['size']) ? $settings['animation_offset']['size'] : 50;
+        $animation_offset = isset($settings['animation_offset']['size']) ? $settings['animation_offset']['size'] : 20;
         $stagger = ($settings['stagger_animation'] ?? 'yes') === 'yes';
 
         $timeline_classes = ['ewpda-tl'];

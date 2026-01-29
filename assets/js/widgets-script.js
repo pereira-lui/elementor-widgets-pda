@@ -228,13 +228,13 @@
                 $image.css(imageInitial);
             });
 
-            // Intersection Observer - trigger when element enters bottom of viewport
+            // Intersection Observer
+            // offset: 0 = anima assim que aparece, 50 = anima no meio da tela, 100 = anima no topo
             if ('IntersectionObserver' in window) {
-                var rootMarginBottom = 100 - settings.offset; // Convert offset to trigger earlier
                 var observerOptions = {
                     root: null,
-                    rootMargin: '0px 0px ' + rootMarginBottom + '% 0px',
-                    threshold: 0
+                    rootMargin: '0px 0px -' + settings.offset + '% 0px',
+                    threshold: 0.1
                 };
 
                 var observer = new IntersectionObserver(function(entries) {
