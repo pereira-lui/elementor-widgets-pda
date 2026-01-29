@@ -147,81 +147,127 @@
         initAllTimelines: function() {
             var self = this;
             $('.ewpda-tl--animated').each(function() {
-                self.initElement($(this).closest('.elementor-widget'));
+                var $widget = $(this).closest('.elementor-widget');
+                if (!$widget.length) {
+                    $widget = $(this).parent();
+                }
+                self.initElement($widget);
             });
         },
 
         initElement: function($scope) {
             var $timeline = $scope.find('.ewpda-tl--animated');
+            if (!$timeline.length) {
+                $timeline = $scope.filter('.ewpda-tl--animated');
+            }
             if (!$timeline.length) return;
 
+            // Prevent double initialization
+            if ($timeline.data('ewpda-initialized')) return;
+            $timeline.data('ewpda-initialized', true);
+
             var settings = {
-                animation: $timeline.data('animation') || 'fade-slide',
-                duration: $timeline.data('duration') || 800,
-                delay: $timeline.data('delay') || 150,
-                offset: $timeline.data('offset') || 20,
-                stagger: $timeline.data('stagger') === true || $timeline.data('stagger') === 'true'
+                animation: $timeline.attr('data-animation') || 'fade-slide',
+                duration: parseInt($timeline.attr('data-duration')) || 800,
+                delay: parseInt($timeline.attr('data-delay')) || 150,
+                offset: parseInt($timeline.attr('data-offset')) || 20,
+                stagger: $timeline.attr('data-stagger') === 'true'
             };
+
+            console.log('Timeline settings:', settings);
 
             var $items = $timeline.find('.ewpda-tl__item--hidden');
             
-            // Set transition styles
+            // Apply initial styles based on animation type
             $items.each(function() {
-                var $content = $(this).find('.ewpda-tl__content');
-                var $image = $(this).find('.ewpda-tl__image');
+                var $item = $(this);
+                var $content = $item.find('.ewpda-tl__content');
+                var $image = $item.find('.ewpda-tl__image');
+                var isLeft = $item.hasClass('ewpda-tl__item--left');
                 
-                var transitionValue = 'opacity ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1), ' +
-                                     'transform ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1), ' +
-                                     'filter ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
-                
+                // Set transition
+                var transitionValue = 'all ' + settings.duration + 'ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 $content.css('transition', transitionValue);
                 $image.css('transition', transitionValue);
-                $(this).css('transition', 'opacity ' + settings.duration + 'ms ease');
+                
+                // Apply initial state based on animation type
+                var contentInitial = { opacity: 0 };
+                var imageInitial = { opacity: 0 };
+                
+                switch(settings.animation) {
+                    case 'fade':
+                        // Just opacity
+                        break;
+                    case 'fade-slide':
+                        contentInitial.transform = isLeft ? 'translateX(-50px)' : 'translateX(50px)';
+                        imageInitial.transform = isLeft ? 'translateX(50px)' : 'translateX(-50px)';
+                        break;
+                    case 'fade-scale':
+                        contentInitial.transform = 'scale(0.8)';
+                        imageInitial.transform = 'scale(0.8)';
+                        break;
+                    case 'slide-only':
+                        contentInitial.opacity = 1;
+                        imageInitial.opacity = 1;
+                        contentInitial.transform = isLeft ? 'translateX(-80px)' : 'translateX(80px)';
+                        imageInitial.transform = isLeft ? 'translateX(80px)' : 'translateX(-80px)';
+                        break;
+                    case 'blur-in':
+                        contentInitial.filter = 'blur(10px)';
+                        contentInitial.transform = 'scale(1.05)';
+                        imageInitial.filter = 'blur(10px)';
+                        imageInitial.transform = 'scale(1.05)';
+                        break;
+                    case 'rotate-in':
+                        contentInitial.transform = isLeft ? 'translateX(-30px) rotate(-5deg)' : 'translateX(30px) rotate(5deg)';
+                        imageInitial.transform = isLeft ? 'translateX(30px) rotate(5deg)' : 'translateX(-30px) rotate(-5deg)';
+                        break;
+                }
+                
+                $content.css(contentInitial);
+                $image.css(imageInitial);
             });
 
-            // Intersection Observer
+            // Intersection Observer - trigger when element enters bottom of viewport
             if ('IntersectionObserver' in window) {
+                var rootMarginBottom = 100 - settings.offset; // Convert offset to trigger earlier
                 var observerOptions = {
                     root: null,
-                    rootMargin: '-' + settings.offset + '% 0px',
-                    threshold: 0.1
+                    rootMargin: '0px 0px ' + rootMarginBottom + '% 0px',
+                    threshold: 0
                 };
 
                 var observer = new IntersectionObserver(function(entries) {
                     entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
                             var $item = $(entry.target);
-                            var index = $item.data('index') || 0;
-                            var baseDelay = settings.stagger ? 0 : (index * settings.delay);
+                            var $content = $item.find('.ewpda-tl__content');
+                            var $image = $item.find('.ewpda-tl__image');
+                            
+                            // Final state
+                            var finalState = {
+                                opacity: 1,
+                                transform: 'translateX(0) scale(1) rotate(0)',
+                                filter: 'blur(0)'
+                            };
                             
                             if (settings.stagger) {
-                                // Animate content first, then image
-                                var $content = $item.find('.ewpda-tl__content');
-                                var $image = $item.find('.ewpda-tl__image');
+                                // Animate content first
+                                $content.css(finalState);
                                 
+                                // Then image after delay
                                 setTimeout(function() {
-                                    $content.css({
-                                        'opacity': '1',
-                                        'transform': 'translateX(0) scale(1) rotate(0)',
-                                        'filter': 'blur(0)'
-                                    });
-                                }, baseDelay);
-                                
-                                setTimeout(function() {
-                                    $image.css({
-                                        'opacity': '1',
-                                        'transform': 'translateX(0) scale(1) rotate(0)',
-                                        'filter': 'blur(0)'
-                                    });
-                                }, baseDelay + settings.delay);
+                                    $image.css(finalState);
+                                }, settings.delay);
                                 
                                 setTimeout(function() {
                                     $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
-                                }, baseDelay + settings.delay + settings.duration);
+                                }, settings.delay + 100);
                             } else {
-                                setTimeout(function() {
-                                    $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
-                                }, baseDelay);
+                                // Animate both together
+                                $content.css(finalState);
+                                $image.css(finalState);
+                                $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
                             }
                             
                             observer.unobserve(entry.target);
@@ -234,7 +280,15 @@
                 });
             } else {
                 // Fallback for older browsers
-                $items.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
+                $items.each(function() {
+                    var $item = $(this);
+                    $item.find('.ewpda-tl__content, .ewpda-tl__image').css({
+                        opacity: 1,
+                        transform: 'none',
+                        filter: 'none'
+                    });
+                    $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
+                });
             }
         }
     };

@@ -319,22 +319,22 @@ class Elementor_Widgets_PDA_Timeline extends \Elementor\Widget_Base {
         $this->add_control(
             'animation_offset',
             [
-                'label' => __('Offset de Trigger (%)', 'elementor-widgets-pda'),
+                'label' => __('Antecipar Animação (%)', 'elementor-widgets-pda'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 50,
+                        'max' => 100,
                         'step' => 5,
                     ],
                 ],
                 'default' => [
-                    'size' => 20,
+                    'size' => 50,
                 ],
                 'condition' => [
                     'enable_animation' => 'yes',
                 ],
-                'description' => __('Porcentagem da viewport para iniciar a animação', 'elementor-widgets-pda'),
+                'description' => __('Quanto maior, mais cedo a animação inicia (0 = topo da tela, 100 = fundo)', 'elementor-widgets-pda'),
             ]
         );
 
@@ -794,7 +794,7 @@ class Elementor_Widgets_PDA_Timeline extends \Elementor\Widget_Base {
         $animation_type = $settings['animation_type'] ?? 'fade-slide';
         $animation_duration = isset($settings['animation_duration']['size']) ? $settings['animation_duration']['size'] : 800;
         $animation_delay = isset($settings['animation_delay']['size']) ? $settings['animation_delay']['size'] : 150;
-        $animation_offset = isset($settings['animation_offset']['size']) ? $settings['animation_offset']['size'] : 20;
+        $animation_offset = isset($settings['animation_offset']['size']) ? $settings['animation_offset']['size'] : 50;
         $stagger = ($settings['stagger_animation'] ?? 'yes') === 'yes';
 
         $timeline_classes = ['ewpda-tl'];
