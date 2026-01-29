@@ -784,18 +784,18 @@ class Elementor_Widgets_PDA_Timeline extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         
-        $layout = $settings['layout_style'];
-        $first_position = $settings['first_item_position'];
-        $show_line = $settings['show_line'] === 'yes';
-        $show_dots = $settings['show_dots'] === 'yes';
+        $layout = $settings['layout_style'] ?? 'alternating';
+        $first_position = $settings['first_item_position'] ?? 'left';
+        $show_line = ($settings['show_line'] ?? 'yes') === 'yes';
+        $show_dots = ($settings['show_dots'] ?? 'yes') === 'yes';
         
         // Animation settings
-        $enable_animation = $settings['enable_animation'] === 'yes';
-        $animation_type = $settings['animation_type'];
-        $animation_duration = $settings['animation_duration']['size'];
-        $animation_delay = $settings['animation_delay']['size'];
-        $animation_offset = $settings['animation_offset']['size'];
-        $stagger = $settings['stagger_animation'] === 'yes';
+        $enable_animation = ($settings['enable_animation'] ?? 'yes') === 'yes';
+        $animation_type = $settings['animation_type'] ?? 'fade-slide';
+        $animation_duration = isset($settings['animation_duration']['size']) ? $settings['animation_duration']['size'] : 800;
+        $animation_delay = isset($settings['animation_delay']['size']) ? $settings['animation_delay']['size'] : 150;
+        $animation_offset = isset($settings['animation_offset']['size']) ? $settings['animation_offset']['size'] : 20;
+        $stagger = ($settings['stagger_animation'] ?? 'yes') === 'yes';
 
         $timeline_classes = ['ewpda-tl'];
         $timeline_classes[] = 'ewpda-tl--' . $layout;
