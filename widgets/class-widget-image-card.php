@@ -150,14 +150,14 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'image_height',
+            'card_height',
             [
-                'label' => __('Altura da Imagem', 'elementor-widgets-pda'),
+                'label' => __('Altura do Card', 'elementor-widgets-pda'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'vh', '%'],
                 'range' => [
                     'px' => [
-                        'min' => 100,
+                        'min' => 150,
                         'max' => 800,
                         'step' => 10,
                     ],
@@ -172,10 +172,10 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 280,
+                    'size' => 350,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ewpda-ic-card__image' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -193,7 +193,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'none' => __('None', 'elementor-widgets-pda'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ewpda-ic-card__image img' => 'object-fit: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image' => 'object-fit: {{VALUE}};',
                 ],
             ]
         );
@@ -216,13 +216,13 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'bottom right' => __('Bottom Right', 'elementor-widgets-pda'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ewpda-ic-card__image img' => 'object-position: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image' => 'object-position: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'image_border_radius',
+            'card_border_radius',
             [
                 'label' => __('Borda Arredondada', 'elementor-widgets-pda'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -230,13 +230,13 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'default' => [
                     'top' => '15',
                     'right' => '15',
-                    'bottom' => '0',
-                    'left' => '0',
+                    'bottom' => '15',
+                    'left' => '15',
                     'unit' => 'px',
-                    'isLinked' => false,
+                    'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ewpda-ic-card__image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -321,9 +321,9 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'default' => [
-                    'top' => '15',
+                    'top' => '12',
                     'right' => '20',
-                    'bottom' => '15',
+                    'bottom' => '12',
                     'left' => '20',
                     'unit' => 'px',
                     'isLinked' => false,
@@ -335,18 +335,38 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
+            'text_margin',
+            [
+                'label' => __('Margem', 'elementor-widgets-pda'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '15',
+                    'bottom' => '15',
+                    'left' => '15',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'text_border_radius',
             [
-                'label' => __('Borda Arredondada', 'elementor-widgets-pda'),
+                'label' => __('Borda Arredondada do Texto', 'elementor-widgets-pda'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
-                    'top' => '0',
-                    'right' => '0',
-                    'bottom' => '10',
-                    'left' => '10',
+                    'top' => '8',
+                    'right' => '8',
+                    'bottom' => '8',
+                    'left' => '8',
                     'unit' => 'px',
-                    'isLinked' => false,
+                    'isLinked' => true,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ewpda-ic-card__text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -407,7 +427,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'image_hover_zoom' => 'yes',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ewpda-ic-card:hover .ewpda-ic-card__image img' => 'transform: scale({{SIZE}});',
+                    '{{WRAPPER}} .ewpda-ic-card:hover .ewpda-ic-card__image' => 'transform: scale({{SIZE}});',
                 ],
             ]
         );
@@ -457,20 +477,23 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
             $link_attributes = $this->get_render_attribute_string('card_link');
         }
 
-        // Imagem
-        $image_html = \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'image_size', 'image');
+        // Imagem URL
+        $image_url = '';
+        if (!empty($settings['image']['id'])) {
+            $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src($settings['image']['id'], 'image_size', $settings);
+        } elseif (!empty($settings['image']['url'])) {
+            $image_url = $settings['image']['url'];
+        }
 
         // Wrapper tag
         $wrapper_tag = $has_link ? 'a' : 'div';
         ?>
         
         <<?php echo esc_attr($wrapper_tag); ?> class="<?php echo esc_attr(implode(' ', $card_classes)); ?>" <?php echo $link_attributes; ?>>
-            <div class="ewpda-ic-card__image">
-                <?php echo $image_html; ?>
-            </div>
-            <div class="ewpda-ic-card__text">
+            <img class="ewpda-ic-card__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($settings['card_text']); ?>">
+            <span class="ewpda-ic-card__text">
                 <?php echo esc_html($settings['card_text']); ?>
-            </div>
+            </span>
         </<?php echo esc_attr($wrapper_tag); ?>>
 
         <?php
@@ -493,12 +516,10 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         #>
         
         <{{{ wrapperTag }}} class="{{{ cardClasses.join(' ') }}}" <# if (hasLink) { #>href="{{{ settings.link.url }}}"<# } #>>
-            <div class="ewpda-ic-card__image">
-                <img src="{{{ imageUrl }}}" alt="">
-            </div>
-            <div class="ewpda-ic-card__text">
+            <img class="ewpda-ic-card__image" src="{{{ imageUrl }}}" alt="">
+            <span class="ewpda-ic-card__text">
                 {{{ settings.card_text }}}
-            </div>
+            </span>
         </{{{ wrapperTag }}}>
         <?php
     }
