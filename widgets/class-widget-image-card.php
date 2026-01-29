@@ -485,12 +485,16 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
             $image_url = $settings['image']['url'];
         }
 
+        // Image fit style
+        $image_fit = !empty($settings['image_fit']) ? $settings['image_fit'] : 'cover';
+        $image_position = !empty($settings['image_position']) ? $settings['image_position'] : 'center center';
+
         // Wrapper tag
         $wrapper_tag = $has_link ? 'a' : 'div';
         ?>
         
         <<?php echo esc_attr($wrapper_tag); ?> class="<?php echo esc_attr(implode(' ', $card_classes)); ?>" <?php echo $link_attributes; ?>>
-            <img class="ewpda-ic-card__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($settings['card_text']); ?>">
+            <img class="ewpda-ic-card__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($settings['card_text']); ?>" style="object-fit: <?php echo esc_attr($image_fit); ?>; object-position: <?php echo esc_attr($image_position); ?>;">
             <span class="ewpda-ic-card__text">
                 <?php echo esc_html($settings['card_text']); ?>
             </span>
@@ -508,6 +512,8 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         var imageUrl = settings.image.url;
         var hasLink = settings.link.url;
         var wrapperTag = hasLink ? 'a' : 'div';
+        var imageFit = settings.image_fit || 'cover';
+        var imagePosition = settings.image_position || 'center center';
         
         var cardClasses = ['ewpda-ic-card'];
         if (settings.hover_animation) {
@@ -516,7 +522,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         #>
         
         <{{{ wrapperTag }}} class="{{{ cardClasses.join(' ') }}}" <# if (hasLink) { #>href="{{{ settings.link.url }}}"<# } #>>
-            <img class="ewpda-ic-card__image" src="{{{ imageUrl }}}" alt="">
+            <img class="ewpda-ic-card__image" src="{{{ imageUrl }}}" alt="" style="object-fit: {{{ imageFit }}}; object-position: {{{ imagePosition }}};">
             <span class="ewpda-ic-card__text">
                 {{{ settings.card_text }}}
             </span>
