@@ -10,13 +10,14 @@
 
     /**
      * Elementor Widgets PDA Namespace
+     * Using unique namespace to avoid conflicts
      */
-    window.ElementorWidgetsPDA = window.ElementorWidgetsPDA || {};
+    window.EWPDA = window.EWPDA || {};
 
     /**
      * Utility functions
      */
-    ElementorWidgetsPDA.Utils = {
+    EWPDA.Utils = {
         /**
          * Debounce function
          */
@@ -72,10 +73,10 @@
         ajax: function(action, data, callback) {
             data = data || {};
             data.action = action;
-            data.nonce = elementorWidgetsPDA.nonce;
+            data.nonce = ewpdaFrontend.nonce;
 
             $.ajax({
-                url: elementorWidgetsPDA.ajaxurl,
+                url: ewpdaFrontend.ajaxurl,
                 type: 'POST',
                 data: data,
                 success: function(response) {
@@ -84,7 +85,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('AJAX Error:', error);
+                    console.error('EWPDA AJAX Error:', error);
                 }
             });
         }
@@ -94,14 +95,14 @@
      * Widget Handlers
      * Add your widget-specific handlers here
      */
-    ElementorWidgetsPDA.Widgets = {};
+    EWPDA.Widgets = {};
 
     /**
      * Initialize all widgets
      */
-    ElementorWidgetsPDA.init = function() {
+    EWPDA.init = function() {
         // Initialize registered widgets
-        $.each(ElementorWidgetsPDA.Widgets, function(name, handler) {
+        $.each(EWPDA.Widgets, function(name, handler) {
             if (typeof handler.init === 'function') {
                 handler.init();
             }
@@ -111,15 +112,15 @@
     /**
      * Register a new widget handler
      */
-    ElementorWidgetsPDA.registerWidget = function(name, handler) {
-        ElementorWidgetsPDA.Widgets[name] = handler;
+    EWPDA.registerWidget = function(name, handler) {
+        EWPDA.Widgets[name] = handler;
     };
 
     /**
      * Document ready
      */
     $(document).ready(function() {
-        ElementorWidgetsPDA.init();
+        EWPDA.init();
     });
 
     /**

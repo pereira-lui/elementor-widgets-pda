@@ -175,7 +175,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'size' => 280,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__image' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -193,7 +193,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'none' => __('None', 'elementor-widgets-pda'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__image img' => 'object-fit: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image img' => 'object-fit: {{VALUE}};',
                 ],
             ]
         );
@@ -216,7 +216,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'bottom right' => __('Bottom Right', 'elementor-widgets-pda'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__image img' => 'object-position: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image img' => 'object-position: {{VALUE}};',
                 ],
             ]
         );
@@ -236,7 +236,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'isLinked' => false,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card__image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -262,7 +262,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#8B5CF6',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -274,7 +274,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#FFFFFF',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -284,7 +284,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
             [
                 'name' => 'text_typography',
                 'label' => __('Tipografia', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-image-card__text',
+                'selector' => '{{WRAPPER}} .ewpda-ic-card__text',
             ]
         );
 
@@ -309,7 +309,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -329,7 +329,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'isLinked' => false,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -349,7 +349,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'isLinked' => false,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card__text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ic-card__text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -407,7 +407,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                     'image_hover_zoom' => 'yes',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card:hover .pda-image-card__image img' => 'transform: scale({{SIZE}});',
+                    '{{WRAPPER}} .ewpda-ic-card:hover .ewpda-ic-card__image img' => 'transform: scale({{SIZE}});',
                 ],
             ]
         );
@@ -418,7 +418,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
                 'label' => __('Cor de Fundo do Texto (Hover)', 'elementor-widgets-pda'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pda-image-card:hover .pda-image-card__text' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ic-card:hover .ewpda-ic-card__text' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -428,7 +428,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
             [
                 'name' => 'card_hover_box_shadow',
                 'label' => __('Sombra (Hover)', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-image-card:hover',
+                'selector' => '{{WRAPPER}} .ewpda-ic-card:hover',
             ]
         );
 
@@ -442,7 +442,7 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         // Classes do card
-        $card_classes = ['pda-image-card'];
+        $card_classes = ['ewpda-ic-card'];
 
         if ($settings['hover_animation']) {
             $card_classes[] = 'elementor-animation-' . $settings['hover_animation'];
@@ -465,10 +465,10 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         ?>
         
         <<?php echo esc_attr($wrapper_tag); ?> class="<?php echo esc_attr(implode(' ', $card_classes)); ?>" <?php echo $link_attributes; ?>>
-            <div class="pda-image-card__image">
+            <div class="ewpda-ic-card__image">
                 <?php echo $image_html; ?>
             </div>
-            <div class="pda-image-card__text">
+            <div class="ewpda-ic-card__text">
                 <?php echo esc_html($settings['card_text']); ?>
             </div>
         </<?php echo esc_attr($wrapper_tag); ?>>
@@ -486,17 +486,17 @@ class Elementor_Widgets_PDA_Image_Card extends \Elementor\Widget_Base {
         var hasLink = settings.link.url;
         var wrapperTag = hasLink ? 'a' : 'div';
         
-        var cardClasses = ['pda-image-card'];
+        var cardClasses = ['ewpda-ic-card'];
         if (settings.hover_animation) {
             cardClasses.push('elementor-animation-' + settings.hover_animation);
         }
         #>
         
         <{{{ wrapperTag }}} class="{{{ cardClasses.join(' ') }}}" <# if (hasLink) { #>href="{{{ settings.link.url }}}"<# } #>>
-            <div class="pda-image-card__image">
+            <div class="ewpda-ic-card__image">
                 <img src="{{{ imageUrl }}}" alt="">
             </div>
-            <div class="pda-image-card__text">
+            <div class="ewpda-ic-card__text">
                 {{{ settings.card_text }}}
             </div>
         </{{{ wrapperTag }}}>

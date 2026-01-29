@@ -209,10 +209,10 @@ final class Elementor_Widgets_PDA {
             true
         );
 
-        // Localize script
-        wp_localize_script('elementor-widgets-pda-script', 'elementorWidgetsPDA', [
+        // Localize script with unique object name
+        wp_localize_script('elementor-widgets-pda-script', 'ewpdaFrontend', [
             'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('elementor_widgets_pda_nonce'),
+            'nonce' => wp_create_nonce('ewpda_frontend_nonce'),
         ]);
     }
 

@@ -152,7 +152,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-widget' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ex-widget' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -172,7 +172,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                     'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-widget' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-widget' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -182,7 +182,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
             [
                 'name' => 'box_border',
                 'label' => __('Borda', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-example-widget',
+                'selector' => '{{WRAPPER}} .ewpda-ex-widget',
             ]
         );
 
@@ -193,7 +193,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-widget' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-widget' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -203,7 +203,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
             [
                 'name' => 'box_shadow',
                 'label' => __('Sombra', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-example-widget',
+                'selector' => '{{WRAPPER}} .ewpda-ex-widget',
             ]
         );
 
@@ -228,7 +228,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#1a1a1a',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ex-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -238,7 +238,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
             [
                 'name' => 'title_typography',
                 'label' => __('Tipografia', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-example-title',
+                'selector' => '{{WRAPPER}} .ewpda-ex-title',
             ]
         );
 
@@ -259,7 +259,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -285,7 +285,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#666666',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ex-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -295,7 +295,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
             [
                 'name' => 'description_typography',
                 'label' => __('Tipografia', 'elementor-widgets-pda'),
-                'selector' => '{{WRAPPER}} .pda-example-description',
+                'selector' => '{{WRAPPER}} .ewpda-ex-description',
             ]
         );
 
@@ -323,8 +323,8 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#667eea',
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-icon i' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .pda-example-icon svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ex-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ewpda-ex-icon svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -346,8 +346,8 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                     'size' => 40,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .pda-example-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -369,7 +369,7 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
                     'size' => 15,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pda-example-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ewpda-ex-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -383,21 +383,21 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         
-        $this->add_render_attribute('wrapper', 'class', 'pda-example-widget elementor-widgets-pda-widget');
+        $this->add_render_attribute('wrapper', 'class', 'ewpda-ex-widget');
         ?>
         <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
             <?php if ($settings['show_icon'] === 'yes' && !empty($settings['icon']['value'])) : ?>
-                <div class="pda-example-icon">
+                <div class="ewpda-ex-icon">
                     <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
                 </div>
             <?php endif; ?>
             
             <?php if (!empty($settings['title'])) : ?>
-                <h3 class="pda-example-title"><?php echo esc_html($settings['title']); ?></h3>
+                <h3 class="ewpda-ex-title"><?php echo esc_html($settings['title']); ?></h3>
             <?php endif; ?>
             
             <?php if (!empty($settings['description'])) : ?>
-                <p class="pda-example-description"><?php echo esc_html($settings['description']); ?></p>
+                <p class="ewpda-ex-description"><?php echo esc_html($settings['description']); ?></p>
             <?php endif; ?>
         </div>
         <?php
@@ -409,21 +409,21 @@ class Elementor_Widgets_PDA_Example extends \Elementor\Widget_Base {
     protected function content_template() {
         ?>
         <#
-        view.addRenderAttribute('wrapper', 'class', 'pda-example-widget elementor-widgets-pda-widget');
+        view.addRenderAttribute('wrapper', 'class', 'ewpda-ex-widget');
         #>
         <div {{{ view.getRenderAttributeString('wrapper') }}}>
             <# if (settings.show_icon === 'yes' && settings.icon.value) { #>
-                <div class="pda-example-icon">
+                <div class="ewpda-ex-icon">
                     <i class="{{ settings.icon.value }}" aria-hidden="true"></i>
                 </div>
             <# } #>
             
             <# if (settings.title) { #>
-                <h3 class="pda-example-title">{{{ settings.title }}}</h3>
+                <h3 class="ewpda-ex-title">{{{ settings.title }}}</h3>
             <# } #>
             
             <# if (settings.description) { #>
-                <p class="pda-example-description">{{{ settings.description }}}</p>
+                <p class="ewpda-ex-description">{{{ settings.description }}}</p>
             <# } #>
         </div>
         <?php
