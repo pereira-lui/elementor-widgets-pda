@@ -3,7 +3,7 @@
  * Plugin Name: Elementor Widgets PDA
  * Plugin URI: https://github.com/pereira-lui/elementor-widgets-pda
  * Description: Plugin de Widgets personalizados para Elementor. Coleção de widgets customizados para diversos usos com atualização automática via GitHub.
- * Version: 1.0.3
+ * Version: 1.1.0
  * Author: Lui
  * Author URI: https://github.com/pereira-lui
  * Text Domain: elementor-widgets-pda
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('ELEMENTOR_WIDGETS_PDA_VERSION', '1.0.3');
+define('ELEMENTOR_WIDGETS_PDA_VERSION', '1.1.0');
 define('ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ELEMENTOR_WIDGETS_PDA_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ELEMENTOR_WIDGETS_PDA_PLUGIN_FILE', __FILE__);
@@ -155,10 +155,12 @@ final class Elementor_Widgets_PDA {
         // Include widget files
         require_once ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/class-widget-example.php';
         require_once ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/class-widget-image-card.php';
+        require_once ELEMENTOR_WIDGETS_PDA_PLUGIN_DIR . 'widgets/class-widget-timeline.php';
 
         // Register widgets
         $widgets_manager->register(new Elementor_Widgets_PDA_Example());
         $widgets_manager->register(new Elementor_Widgets_PDA_Image_Card());
+        $widgets_manager->register(new Elementor_Widgets_PDA_Timeline());
     }
 
     /**

@@ -129,11 +129,122 @@
     $(window).on('elementor/frontend/init', function() {
         // Register widget handlers with Elementor
         if (typeof elementorFrontend !== 'undefined') {
-            // Example: Register a widget handler
-            // elementorFrontend.hooks.addAction('frontend/element_ready/widget-name.default', function($scope) {
-            //     // Widget initialization code
-            // });
+            // Timeline Widget Handler
+            elementorFrontend.hooks.addAction('frontend/element_ready/pda_timeline.default', function($scope) {
+                EWPDA.Widgets.Timeline.initElement($scope);
+            });
         }
+    });
+
+    /**
+     * Timeline Widget
+     */
+    EWPDA.Widgets.Timeline = {
+        init: function() {
+            this.initAllTimelines();
+        },
+
+        initAllTimelines: function() {
+            var self = this;
+            $('.ewpda-tl--animated').each(function() {
+                self.initElement($(this).closest('.elementor-widget'));
+            });
+        },
+
+        initElement: function($scope) {
+            var $timeline = $scope.find('.ewpda-tl--animated');
+            if (!$timeline.length) return;
+
+            var settings = {
+                animation: $timeline.data('animation') || 'fade-slide',
+                duration: $timeline.data('duration') || 800,
+                delay: $timeline.data('delay') || 150,
+                offset: $timeline.data('offset') || 20,
+                stagger: $timeline.data('stagger') === true || $timeline.data('stagger') === 'true'
+            };
+
+            var $items = $timeline.find('.ewpda-tl__item--hidden');
+            
+            // Set transition styles
+            $items.each(function() {
+                var $content = $(this).find('.ewpda-tl__content');
+                var $image = $(this).find('.ewpda-tl__image');
+                
+                var transitionValue = 'opacity ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1), ' +
+                                     'transform ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1), ' +
+                                     'filter ' + settings.duration + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                $content.css('transition', transitionValue);
+                $image.css('transition', transitionValue);
+                $(this).css('transition', 'opacity ' + settings.duration + 'ms ease');
+            });
+
+            // Intersection Observer
+            if ('IntersectionObserver' in window) {
+                var observerOptions = {
+                    root: null,
+                    rootMargin: '-' + settings.offset + '% 0px',
+                    threshold: 0.1
+                };
+
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var $item = $(entry.target);
+                            var index = $item.data('index') || 0;
+                            var baseDelay = settings.stagger ? 0 : (index * settings.delay);
+                            
+                            if (settings.stagger) {
+                                // Animate content first, then image
+                                var $content = $item.find('.ewpda-tl__content');
+                                var $image = $item.find('.ewpda-tl__image');
+                                
+                                setTimeout(function() {
+                                    $content.css({
+                                        'opacity': '1',
+                                        'transform': 'translateX(0) scale(1) rotate(0)',
+                                        'filter': 'blur(0)'
+                                    });
+                                }, baseDelay);
+                                
+                                setTimeout(function() {
+                                    $image.css({
+                                        'opacity': '1',
+                                        'transform': 'translateX(0) scale(1) rotate(0)',
+                                        'filter': 'blur(0)'
+                                    });
+                                }, baseDelay + settings.delay);
+                                
+                                setTimeout(function() {
+                                    $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
+                                }, baseDelay + settings.delay + settings.duration);
+                            } else {
+                                setTimeout(function() {
+                                    $item.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
+                                }, baseDelay);
+                            }
+                            
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                $items.each(function() {
+                    observer.observe(this);
+                });
+            } else {
+                // Fallback for older browsers
+                $items.removeClass('ewpda-tl__item--hidden').addClass('ewpda-tl__item--visible');
+            }
+        }
+    };
+
+    // Auto-init timelines on page load (for non-Elementor contexts)
+    $(document).ready(function() {
+        // Small delay to ensure styles are applied
+        setTimeout(function() {
+            EWPDA.Widgets.Timeline.initAllTimelines();
+        }, 100);
     });
 
 })(jQuery);
