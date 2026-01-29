@@ -458,19 +458,27 @@ a.ewpda-ic-card:focus {
 }
 
 @media (max-width: 767px) {
+    /* Linha à esquerda no mobile */
     .ewpda-tl__line {
-        left: 20px;
+        left: 15px !important;
+        transform: none;
     }
     
+    /* Marcador à esquerda */
     .ewpda-tl__dot {
-        left: 20px;
-        top: 0;
+        left: 15px !important;
+        top: 5px;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 12px;
     }
     
+    /* Layout coluna única */
     .ewpda-tl__item {
-        grid-template-columns: 1fr !important;
-        padding-left: 50px;
-        gap: 20px;
+        display: block !important;
+        grid-template-columns: none !important;
+        padding-left: 40px;
+        margin-bottom: 40px;
     }
     
     .ewpda-tl__item--left,
@@ -478,26 +486,54 @@ a.ewpda-ic-card:focus {
         direction: ltr;
     }
     
+    /* Conteúdo alinhado à esquerda */
     .ewpda-tl__item--left .ewpda-tl__content,
     .ewpda-tl__item--right .ewpda-tl__content {
-        grid-column: 1;
         text-align: left;
-        padding: 0;
-        order: 1;
+        padding: 0 0 15px 0;
     }
     
+    /* Imagem abaixo do conteúdo */
     .ewpda-tl__item--left .ewpda-tl__image,
     .ewpda-tl__item--right .ewpda-tl__image {
-        grid-column: 1;
         padding: 0;
-        order: 2;
+    }
+    
+    .ewpda-tl__image img {
+        max-width: 100%;
+    }
+    
+    /* Tipografia mobile */
+    .ewpda-tl__date {
+        font-size: 12px;
     }
     
     .ewpda-tl__title {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
     
     .ewpda-tl__description {
         font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* Fix para layouts fixos */
+    .ewpda-tl--left .ewpda-tl__line,
+    .ewpda-tl--right .ewpda-tl__line {
+        left: 15px !important;
+        right: auto !important;
+    }
+    
+    .ewpda-tl--left .ewpda-tl__dot,
+    .ewpda-tl--right .ewpda-tl__dot {
+        left: 15px !important;
+        right: auto !important;
+        transform: translateX(-50%);
+    }
+    
+    .ewpda-tl--left .ewpda-tl__item,
+    .ewpda-tl--right .ewpda-tl__item {
+        padding-left: 40px;
     }
 }
